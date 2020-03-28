@@ -1,0 +1,17 @@
+appengine-generated/
+.vs
+.atom
+.sublime
+.idea
+.eclipse
+.gradle
+
+*.class
+target
+out
+build
+
+settings.gradle.kts
+gradle
+gradlew.bat
+gradlew
