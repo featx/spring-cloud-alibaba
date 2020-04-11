@@ -12,3 +12,6 @@ pluginManagement {
     }
 }
 rootProject.name = "spring-cloud-alibaba"
+include("module-api")
+include("module-business")
+include("module-storage")
