@@ -11,7 +11,8 @@ target
 out
 build
 
-settings.gradle.kts
+settings.gradle
 gradle
 gradlew.bat
 gradlew
+gradle.properties
