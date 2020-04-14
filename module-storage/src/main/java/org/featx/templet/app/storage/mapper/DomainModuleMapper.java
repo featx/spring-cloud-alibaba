@@ -21,7 +21,22 @@ public interface DomainModuleMapper {
     @SelectKey(statement = "SELECT LAST_INSERT_ID()", keyProperty = "entity.id", before = false, resultType = Long.class)
     void insert(@Param("entity") DomainModuleEntity domainModuleEntity);
 
-    @Update({"update t_domain_module set ff=ff where code = #{entity.code}"})
+    @Update({"update t_domain_module set name = #{entity.name},",
+            " type = #{entity.type}, status = #{entity.status},",
+            " sort = #{entity.sort}, image_url = #{entity.imageUrl},",
+            " comment = #{entity.comment}, ",
+            " where code = #{entity.code} and deleted = 0"})
+    void upsert(@Param("entity") DomainModuleEntity domainModuleEntity);
+
+    @Update({"<script>update t_domain_module set ",
+            "<if test=\"entity.name != null && entity.name != \"\"\"> name = #{entity.name},</if>",
+            "<if test=\"entity.type != null\"> type = #{entity.type},</if>",
+            "<if test=\"entity.status != null\"> status = #{entity.status},</if>",
+            "<if test=\"entity.sort != null\"> sort = #{entity.sort},</if>",
+            "<if test=\"entity.imageUrl != null && entity.imageUrl != \"\"\"> image_url = #{entity.imageUrl}, </if>",
+            "<if test=\"entity.comment != null && entity.comment != \"\"\"> comment = #{entity.comment}, </if>",
+            " where code = #{entity.code} and deleted = 0",
+            "</script> "})
 //    @SelectKey(statement = "select updated_at from t_domain_module where id = (SELECT LAST_INSERT_ID())")
     void update(@Param("entity") DomainModuleEntity domainModuleEntity);
 
@@ -36,10 +51,12 @@ public interface DomainModuleMapper {
             "</script>"})
     List<DomainModuleEntity> selectByCodes(@Param("codes") List<String> codes);
 
-    @Select({"select ", COLUMUS, " from t_domain_module where deleted = 0 order by id limit #{query.offset}, #{query.size}"})
+    @Select({"select ", COLUMUS, " from t_domain_module where deleted = 0 ",
+            "",
+            "order by id limit #{query.offset}, #{query.size}"})
     List<DomainModuleEntity> selectByPage(@Param("query") DomainModulePageQueryRequest domainPageQueryRequest);
 
-    @Select({"select count(1) from t_domain_module where deleted = 0 and ",
-    ""})
+    @Select({"select count(1) from t_domain_module where deleted = 0 ",
+            ""})
     long countByQuery(@Param("query") DomainModulePageQueryRequest domainPageQueryRequest);
 }

@@ -2,6 +2,7 @@ package org.featx.templet.app.storage.service;
 
 import com.google.common.collect.Lists;
 import org.featx.spec.entity.AbstractUnified;
+import org.featx.spec.feature.IdGenerate;
 import org.featx.spec.model.QuerySection;
 import org.featx.spec.util.CollectionUtil;
 import org.featx.spec.util.StringUtil;
@@ -27,20 +28,23 @@ public class DomainModuleServiceImpl implements DomainModuleService {
     @Resource
     private DomainModuleMapper domainModuleMapper;
 
+    @Resource
+    private IdGenerate idGenerate;
     @Override
     @Transactional
     public void save(DomainModuleEntity domainModuleEntity) {
         if (StringUtil.isBlank(domainModuleEntity.getCode())) {
+            domainModuleEntity.setCode(String.format("%s%s", "DFM", Long.toString(idGenerate.nextId(), 36)));
             domainModuleMapper.insert(domainModuleEntity);
         } else {
-            domainModuleMapper.update(domainModuleEntity);
+            domainModuleMapper.upsert(domainModuleEntity);
         }
     }
 
     @Override
     @Transactional
     public void update(DomainModuleEntity domainModuleEntity) {
-//        domainModuleMapper.update(domainModuleEntity);?
+        domainModuleMapper.update(domainModuleEntity);
     }
 
     @Override
