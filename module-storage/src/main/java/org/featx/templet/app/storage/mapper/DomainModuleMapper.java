@@ -29,12 +29,12 @@ public interface DomainModuleMapper {
     void upsert(@Param("entity") DomainModuleEntity domainModuleEntity);
 
     @Update({"<script>update t_domain_module set ",
-            "<if test=\"entity.name != null && entity.name != \"\"\"> name = #{entity.name},</if>",
+            "<if test=\"entity.name != null and entity.name != ''\"> name = #{entity.name},</if>",
             "<if test=\"entity.type != null\"> type = #{entity.type},</if>",
             "<if test=\"entity.status != null\"> status = #{entity.status},</if>",
             "<if test=\"entity.sort != null\"> sort = #{entity.sort},</if>",
-            "<if test=\"entity.imageUrl != null && entity.imageUrl != \"\"\"> image_url = #{entity.imageUrl}, </if>",
-            "<if test=\"entity.comment != null && entity.comment != \"\"\"> comment = #{entity.comment}, </if>",
+            "<if test=\"entity.imageUrl != null and entity.imageUrl != ''\"> image_url = #{entity.imageUrl}, </if>",
+            "<if test=\"entity.comment != null and entity.comment != ''\"> comment = #{entity.comment}, </if>",
             " where code = #{entity.code} and deleted = 0",
             "</script> "})
 //    @SelectKey(statement = "select updated_at from t_domain_module where id = (SELECT LAST_INSERT_ID())")
