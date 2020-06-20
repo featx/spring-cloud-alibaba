@@ -5,7 +5,6 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.featx.spec.model.BaseUnified;
 
-import java.time.LocalDateTime;
 
 /**
  * @author Excepts
@@ -18,7 +17,5 @@ public class DomainModuleSaveRequest extends BaseUnified {
 
     private static final long serialVersionUID = 5570811073514589053L;
 
-    private LocalDateTime createdAt;
-
-    private LocalDateTime updatedAt;
+    private ${property.type} ${property.name};
 }

@@ -13,4 +13,8 @@ import org.featx.spec.model.BaseUnified;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public class DomainModuleItem extends BaseUnified {
+
+    private static final long serialVersionUID = 1668164802765732399L;
+
+    private ${property.type} ${property.name};
 }

@@ -1,16 +1,21 @@
 package org.featx.templet.app.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.featx.spec.model.Record;
 
-import java.time.LocalDateTime;
 
 /**
  * @author Excepts
  * @since 2020/4/11 22:34
  */
 @Data
-public class DomainModuleRecordRequest implements Record {
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
+public class DomainModuleRecordRequest extends Record {
 
-    private LocalDateTime createdAt;
+    private static final long serialVersionUID = 3542473394788128677L;
+
+    private ${property.type} ${property.name};
 }

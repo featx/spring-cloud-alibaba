@@ -27,6 +27,7 @@ configurations {
 }
 
 dependencies {
+    compile(project(":module-api"))
     compile(project(":module-storage"))
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
