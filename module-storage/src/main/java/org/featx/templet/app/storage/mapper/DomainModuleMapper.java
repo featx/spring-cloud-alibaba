@@ -1,8 +1,9 @@
 package org.featx.templet.app.storage.mapper;
 
 import org.apache.ibatis.annotations.*;
-import org.featx.templet.app.model.DomainModulePageQueryRequest;
+import org.featx.spec.model.PageRequest;
 import org.featx.templet.app.storage.entity.DomainModuleEntity;
+import org.featx.templet.app.storage.query.DomainModuleCriteria;
 
 import java.util.List;
 
@@ -53,10 +54,10 @@ public interface DomainModuleMapper {
 
     @Select({"select ", COLUMUS, " from t_domain_module where deleted = 0 ",
             "",
-            "order by id limit #{query.offset}, #{query.size}"})
-    List<DomainModuleEntity> selectByPage(@Param("query") DomainModulePageQueryRequest domainPageQueryRequest);
+            "order by id limit #{page.offset}, #{page.size}"})
+    List<DomainModuleEntity> selectByPage(@Param("query") DomainModuleCriteria criteria, @Param("page") PageRequest page);
 
     @Select({"select count(1) from t_domain_module where deleted = 0 ",
             ""})
-    long countByQuery(@Param("query") DomainModulePageQueryRequest domainPageQueryRequest);
+    long countByQuery(@Param("query") DomainModuleCriteria criteria);
 }

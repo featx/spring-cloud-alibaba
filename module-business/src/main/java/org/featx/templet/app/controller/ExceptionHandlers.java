@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import javax.validation.ConstraintViolationException;
-
 /**
  * @author Excepts
  * @since 2019-10-28 14:25
@@ -20,8 +18,8 @@ import javax.validation.ConstraintViolationException;
 public class ExceptionHandlers extends BaseExceptionHandler {
     @Override
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler({MethodArgumentNotValidException.class, ConstraintViolationException.class,
-            HttpRequestMethodNotSupportedException.class, IllegalStateException.class})
+    @ExceptionHandler({MethodArgumentNotValidException.class, IllegalStateException.class,
+            HttpRequestMethodNotSupportedException.class,})
     protected <R> BaseResponse<R> handleConstraintViolationException(Exception e) {
         return super.handleConstraintViolationException(e);
     }

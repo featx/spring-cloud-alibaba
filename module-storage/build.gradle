@@ -10,7 +10,7 @@ repositories {
 }
 
 dependencies {
-    compile(project(":module-api"))
+    compileOnly("org.featx.spec:spec:${featxSpecVersion}")
 //    implementation("io.projectreactor.kotlin:reactor-kotlin-extensions:1.0.2.RELEASE")
     implementation("com.google.guava:guava:${guavaVersion}")
 //    implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -24,7 +24,7 @@ dependencies {
     implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:${springMybatisVersion}")
 //    runtimeOnly("dev.miku:r2dbc-mysql")
     implementation("com.zaxxer:HikariCP:${hikariCPVersion}")
-    runtimeOnly("mysql:mysql-connector-java")
+    runtimeOnly("mysql:mysql-connector-java:${mysqlVersion}")
     compileOnly("org.projectlombok:lombok:${lombokVersion}")
     annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
 

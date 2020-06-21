@@ -1,8 +1,9 @@
 package org.featx.templet.app.storage.service;
 
+import org.featx.spec.model.PageRequest;
 import org.featx.spec.model.QuerySection;
-import org.featx.templet.app.model.DomainModulePageQueryRequest;
 import org.featx.templet.app.storage.entity.DomainModuleEntity;
+import org.featx.templet.app.storage.query.DomainModuleCriteria;
 
 import java.util.List;
 
@@ -22,5 +23,5 @@ public interface DomainModuleService {
 
     List<DomainModuleEntity> listByCodes(List<String> codes);
 
-    QuerySection<DomainModuleEntity> page(DomainModulePageQueryRequest domainPageQueryRequest);
+    QuerySection<DomainModuleEntity> page(DomainModuleCriteria criteria, PageRequest pageRequest);
 }
