@@ -16,11 +16,5 @@ public class DomainModuleInfo extends BaseUnified {
 
     private static final long serialVersionUID = -3141043832603954339L;
 
-    private $ {
-        property.type
-    }
-
-    $ {
-        property.name
-    }
+    private ${property.type} ${property.name}
 }

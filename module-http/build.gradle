@@ -3,7 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.jvm") version("${kotlinVersion}")
     id("org.jetbrains.kotlin.plugin.spring") version("${kotlinVersion}")
     id("org.springframework.boot") version("${springBootVersion}")
-    id("io.spring.dependency-management") version("1.0.9.RELEASE")
+    id("io.spring.dependency-management") version("${springDepedencyVersion}")
 }
 
 dependencyManagement {
@@ -24,7 +24,7 @@ configurations {
 
 dependencies {
     compile(project(":module-spec"))
-    compile(project(":module-core"))
+    compile(project(":module-data"))
 //    compile("javax.servlet-api:${servletVersion}")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")

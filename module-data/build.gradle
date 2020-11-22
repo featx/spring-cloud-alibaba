@@ -33,7 +33,7 @@ dependencies {
 }
 
 compileKotlin {
-    kotlinOptions.jvmTarget = JavaVersion.VERSION_14
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_15
 }
 
 compileTestKotlin {

@@ -44,7 +44,7 @@ public interface DomainModuleMapper {
     @Update({"update t_domain_module set deleted = #{deleted} where code = #{code}"})
     void delete(@Param("code") String code, @Param("deleted") Boolean delete);
 
-    @Select({"select ", COLUMUS, " from t_domain_module where  deleted = 0 and code = #{code} limit 1"})
+    @Select({"select ", COLUMUS, " from t_domain_module where deleted = 0 and code = #{code} limit 1"})
     DomainModuleEntity selectByCode(@Param("code") String code);
 
     @Select({"<script>select ", COLUMUS, " from t_domain_module where deleted = 0 and code in ",

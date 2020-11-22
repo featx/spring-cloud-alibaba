@@ -4,7 +4,6 @@ plugins {
 }
 
 dependencies {
-    compile(project(":module-spec"))
     compileOnly("com.google.guava:guava:${guavaVersion}")
     compileOnly("com.alibaba:fastjson:${fastJsonVersion}")
     compileOnly("org.slf4j:slf4j-api:${slf4jVersion}")

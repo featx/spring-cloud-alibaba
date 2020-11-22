@@ -16,11 +16,5 @@ public class DomainModuleEntity extends AbstractUnified<Long> {
 
     private static final long serialVersionUID = -4441039419344895608L;
 
-    private $ {
-        property.type
-    }
-
-    $ {
-        property.name
-    }
+    private ${property.type} ${property.name}
 }

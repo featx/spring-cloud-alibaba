@@ -1,7 +1,6 @@
 package org.featx.templet.app.storage.service;
 
 import com.google.common.collect.Lists;
-import org.featx.spec.entity.AbstractUnified;
 import org.featx.spec.feature.IdGenerate;
 import org.featx.spec.model.PageRequest;
 import org.featx.spec.model.QuerySection;
@@ -14,9 +13,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -31,6 +30,7 @@ public class DomainModuleServiceImpl implements DomainModuleService {
 
     @Resource
     private IdGenerate idGenerate;
+
     @Override
     @Transactional
     public void save(DomainModuleEntity domainModuleEntity) {
@@ -60,25 +60,23 @@ public class DomainModuleServiceImpl implements DomainModuleService {
 
     @Override
     public List<DomainModuleEntity> listByCodes(final List<String> codes) {
-        final List<DomainModuleEntity> result = Lists.newArrayList();
-        if (CollectionUtil.isEmpty(codes)) {
-            return result;
-        }
-        return Optional.of(domainModuleMapper.selectByCodes(codes))
+        return Optional.ofNullable(codes)
+                .map(list -> list.stream().filter(StringUtil::isNotBlank).collect(Collectors.toList()))
                 .filter(CollectionUtil::isNotEmpty)
-                .map(entities -> entities.stream()
-                        .collect(Collectors.toMap(AbstractUnified::getCode, Function.identity())))
-                .map(map -> {
-                    codes.forEach(c -> Optional.of(map.get(c)).ifPresent(result::add));
-                    return result;
-                }).orElse(result);
+                .map(list -> domainModuleMapper.selectByCodes(list))
+                .filter(CollectionUtil::isNotEmpty)
+                .map(list -> list.stream().sorted(Comparator.comparingInt(dme -> codes.indexOf(dme.getCode()))).collect(Collectors.toList()))
+                .orElseGet(Lists::newArrayList);
     }
 
     @Override
     @Transactional(readOnly = true)
     public QuerySection<DomainModuleEntity> page(DomainModuleCriteria criteria, PageRequest pageRequest) {
-        List<DomainModuleEntity> moduleEntities = domainModuleMapper.selectByPage(criteria, pageRequest);
         long count = domainModuleMapper.countByQuery(criteria);
+        if(count <= 0) {
+            return QuerySection.of(Lists.newArrayList());
+        }
+        List<DomainModuleEntity> moduleEntities = domainModuleMapper.selectByPage(criteria, pageRequest);
         return QuerySection.of(moduleEntities).total(count);
     }
 }

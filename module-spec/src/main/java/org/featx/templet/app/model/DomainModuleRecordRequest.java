@@ -17,11 +17,5 @@ public class DomainModuleRecordRequest extends Record {
 
     private static final long serialVersionUID = 3542473394788128677L;
 
-    private $ {
-        property.type
-    }
-
-    $ {
-        property.name
-    }
+    private ${property.type} ${property.name}
 }

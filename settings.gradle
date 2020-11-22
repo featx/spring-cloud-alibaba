@@ -2,7 +2,7 @@ rootProject.name = "spring-cloud-alibaba"
 include("module-base")
 
 include("module-spec")
-include("module-core")
+include("module-entr")
 include("module-data")
 
 include("module-http")

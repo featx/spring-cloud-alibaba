@@ -2,15 +2,18 @@ package org.featx.templet.app.controller;
 
 import org.featx.spec.model.*;
 import org.featx.templet.app.endpoint.DomainFeatureModuleEndpoint;
-import org.featx.templet.app.facade.DomainModuleFacade;
 import org.featx.templet.app.model.DomainModuleInfo;
 import org.featx.templet.app.model.DomainModuleItem;
 import org.featx.templet.app.model.DomainModulePageQueryRequest;
 import org.featx.templet.app.model.DomainModuleSaveRequest;
+import org.featx.templet.app.storage.entity.DomainModuleEntity;
+import org.featx.templet.app.storage.query.DomainModuleCriteria;
+import org.featx.templet.app.storage.service.DomainModuleService;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Excepts
@@ -20,38 +23,72 @@ import java.util.List;
 public class DomainFeatureModuleController implements DomainFeatureModuleEndpoint {
 
     @Resource
-    private DomainModuleFacade domainModuleFacade;
+    private DomainModuleService domainModuleService;
+
+    private DomainModuleEntity toEntity(DomainModuleSaveRequest saveRequest) {
+        DomainModuleEntity domainModuleEntity = new DomainModuleEntity();
+        domainModuleEntity.setName(saveRequest.getName());
+        return domainModuleEntity;
+    }
 
     @Override
-    public BaseResponse<Coded> save(DomainModuleSaveRequest saveRequest) {
-        return BaseResponse.succeeded(domainModuleFacade.save(saveRequest));
+    public BaseResponse<Coded> save(final DomainModuleSaveRequest saveRequest) {
+        DomainModuleEntity entity = toEntity(saveRequest);
+        domainModuleService.save(entity);
+        return BaseResponse.succeeded(entity::getCode);
     }
 
     @Override
     public BaseResponse<Coded> put(DomainModuleSaveRequest saveRequest) {
-        return BaseResponse.succeeded(domainModuleFacade.update(saveRequest));
+        DomainModuleEntity entity = toEntity(saveRequest);
+        domainModuleService.update(entity);
+        return BaseResponse.succeeded(entity::getCode);
     }
 
     @Override
     public BaseResponse<Void> delete(String code) {
-        domainModuleFacade.delete(code);
+        domainModuleService.delete(code);
         return BaseResponse.succeeded();
+    }
+
+    private DomainModuleInfo toInfo(DomainModuleEntity entity) {
+        DomainModuleInfo info = new DomainModuleInfo();
+        info.setCode(entity.getCode());
+        info.setName(entity.getName());
+        info.setType(entity.getType());
+        return info;
     }
 
     @Override
     public BaseResponse<DomainModuleInfo> getByCode(String code) {
-        return BaseResponse.succeeded(domainModuleFacade.getByCode(code));
+        DomainModuleEntity domainModuleEntity = domainModuleService.findOne(code);
+        return BaseResponse.succeeded(toInfo(domainModuleEntity));
     }
 
     @Override
     public ListResponse<DomainModuleInfo> listByCode(List<String> codes) {
-        return ListResponse.succeeded(domainModuleFacade.listByCodes(codes));
+        List<DomainModuleEntity> entities = domainModuleService.listByCodes(codes);
+        return ListResponse.succeeded(entities.stream().map(this::toInfo).collect(Collectors.toList()));
+    }
+
+    private DomainModuleCriteria toCriteria(DomainModulePageQueryRequest pageQueryRequest) {
+        DomainModuleCriteria criteria = new DomainModuleCriteria();
+        return criteria;
+    }
+
+    private DomainModuleItem toItem(DomainModuleEntity entity) {
+        DomainModuleItem item = new DomainModuleItem();
+        item.setCode(entity.getCode());
+        item.setName(entity.getName());
+        item.setType(entity.getType());
+        return item;
     }
 
     @Override
     public PageResponse<DomainModuleItem> page(DomainModulePageQueryRequest pageQueryRequest) {
-        QuerySection<DomainModuleItem> querySection = domainModuleFacade.page(pageQueryRequest);
-        return PageResponse.succeeded(querySection.list())
+        QuerySection<DomainModuleEntity> querySection =
+                domainModuleService.page(toCriteria(pageQueryRequest), pageQueryRequest);
+        return PageResponse.succeeded(querySection.list().stream().map(this::toItem).collect(Collectors.toList()))
                 .page(pageQueryRequest.getPage())
                 .total(querySection.getTotal());
     }
