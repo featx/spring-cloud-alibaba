@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    hikari:
+      jdbc-url: jdbc:mariadb://127.0.0.1:3306/test
+      driver-class-name: org.mariadb.jdbc.Driver
+      username: root
+      password: root
+
+  sql:
+    init:
+      mode: always
+      schema-locations:
+        - classpath:db/migration/domain-module-schema.sql
+#        - classpath:db/migration/category-schema.sql
+#      data-locations:
+#        - classpath:db/migration/brand-data.sql
+#        - classpath:db/migration/category-data.sql
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    org:
+      featx:
+        templet: debug

@@ -4,11 +4,8 @@ plugins {
 }
 
 dependencies {
-    compileOnly("org.springframework.cloud:spring-cloud-starter-openfeign:3.0.3")
-    compileOnly("org.springframework:spring-web:${springVersion}")
+    implementation(project(":module-spec"))
 
-    compileOnly("org.slf4j:slf4j-api:${slf4jVersion}")
-    compileOnly("com.google.guava:guava:${guavaVersion}")
     compileOnly("org.featx.spec:spec:${featxSpecVersion}")
     compileOnly("org.projectlombok:lombok:${lombokVersion}")
     annotationProcessor("org.projectlombok:lombok:${lombokVersion}")

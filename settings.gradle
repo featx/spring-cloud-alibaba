@@ -1,12 +1,14 @@
 rootProject.name = "spring-cloud-alibaba"
-include("module-base")
-
 include("module-spec")
-include("module-entr")
+include("module-norm")
 include("module-data")
+include("module-core")
 
-include("module-http")
-//include("goals-msgq")
-//include("goals-cron")
-//include("goals-dubo")
-//include("goals-grpc")
+//include("module-srch")
+//include("module-cach")
+
+//include("module-http")
+//include("module-msgq")
+//include("module-cron")
+//include("module-dubo")
+//include("module-grpc")

@@ -1,0 +1,91 @@
+server:
+  port: 8888
+
+spring:
+  cloud:
+    sentinel:
+      datasource:
+        ds:
+          nacos:
+            dataId: ${spring.application.name}-sentinel
+            groupId: DEFAULT_GROUP
+            rule-type: flow
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    hikari:
+      minimum-idle: 10
+      maximum-pool-size: 20
+      jdbc-url: jdbc:mariadb://127.0.0.1:3306/test
+      username: root
+      password: root
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 0
+    password: 123456
+logging:
+  config: classpath:logback-spring.xml
+
+---
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8080
+      datasource:
+        ds:
+          nacos:
+            server-addr: 127.0.0.1:8848
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: 123456
+    database: 0
+  datasource:
+    hikari:
+      jdbc-url: jdbc:mariadb://127.0.0.1:3306/test
+      username: root
+      password: root
+  config:
+    activate:
+      on-profile: develop
+rocketmq:
+  name-server: localhost:9876
+  producer:
+    group: mq-test
+    send-message-timeout: 300000
+    compress-message-body-threshold: 4096
+    max-message-size: 4194304
+    retry-times-when-send-async-failed: 0
+    retry-next-server: true
+    retry-times-when-send-failed: 2
+---
+
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8080
+      datasource:
+        ds:
+          nacos:
+            server-addr: 127.0.0.1:8848
+  redis:
+    host: localhost
+    port: 6379
+    password: 123456
+    database: 0
+  datasource:
+    hikari:
+      jdbc-url: jdbc:mariadb://127.0.0.1:3306/test
+      username: root
+      password: root
+  config:
+    activate:
+      on-profile: prod
