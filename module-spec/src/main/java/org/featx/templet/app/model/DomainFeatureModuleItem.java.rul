@@ -7,15 +7,15 @@ import org.featx.spec.model.BaseUnified;
 
 /**
  * @author Excepts
- * @since 2020/4/11 23:11
+ * @since 2020/4/11 23:12
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
-public class DomainFeatureModuleInfo extends BaseUnified {
+public class DomainFeatureModuleItem extends BaseUnified {
 
-    private static final long serialVersionUID = -3141043832603954339L;
+    private static final long serialVersionUID = 1668164802765732399L;
 
-//    private ${property.type} ${property.name}
-    private String description;
+    private ${property.type} ${property.name}
+
 }

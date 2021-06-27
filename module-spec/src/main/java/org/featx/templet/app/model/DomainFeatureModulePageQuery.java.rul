@@ -16,6 +16,6 @@ public class DomainFeatureModulePageQuery extends PageRequest {
 
     private static final long serialVersionUID = 564823245124563273L;
 
-//    private ${property.type} ${property.name}
-    private String description;
+    private ${property.type} ${property.name}
+
 }

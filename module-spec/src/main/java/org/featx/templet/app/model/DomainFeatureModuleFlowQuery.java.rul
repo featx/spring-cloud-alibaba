@@ -16,6 +16,5 @@ public class DomainFeatureModuleFlowQuery extends FlowRequest {
 
     private static final long serialVersionUID = -3378756542362683471L;
 
-//    private ${property.type} ${property.name}
-    private String description;
+    private ${property.type} ${property.name}
 }
