@@ -1,5 +1,5 @@
 allprojects {
-    group = "org.featx.template.app"
+    group = "org.featx.templet.app"
     version = "1.0.0-SNAPSHOT"
 
     repositories {

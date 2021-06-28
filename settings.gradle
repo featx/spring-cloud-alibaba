@@ -1,4 +1,4 @@
-rootProject.name = "spring-cloud-alibaba"
+rootProject.name = "module"
 include("module-spec")
 include("module-norm")
 include("module-data")
