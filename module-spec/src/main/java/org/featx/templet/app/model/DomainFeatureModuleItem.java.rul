@@ -1,5 +1,7 @@
 package org.featx.templet.app.model;
 
+import java.io.Serial;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -14,8 +16,9 @@ import org.featx.spec.model.BaseUnified;
 @ToString(callSuper = true)
 public class DomainFeatureModuleItem extends BaseUnified {
 
+    @Serial
     private static final long serialVersionUID = 1668164802765732399L;
 
-    private ${property.type} ${property.name}
+    private ${property.type} ${property.name};
 
 }

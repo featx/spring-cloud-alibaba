@@ -1,5 +1,7 @@
 package org.featx.templet.app.model;
 
+import java.io.Serial;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -14,8 +16,9 @@ import org.featx.spec.model.PageRequest;
 @ToString(callSuper = true)
 public class DomainFeatureModulePageQuery extends PageRequest {
 
+    @Serial
     private static final long serialVersionUID = 564823245124563273L;
 
-    private ${property.type} ${property.name}
+    private ${property.type} ${property.name};
 
 }
