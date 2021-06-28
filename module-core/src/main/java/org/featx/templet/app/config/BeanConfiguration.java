@@ -7,8 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author Excepts
- * @since 2020/6/21 12:32
+ *
  */
 @Configuration
 public class BeanConfiguration {

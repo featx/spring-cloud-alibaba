@@ -8,8 +8,7 @@ import lombok.ToString;
 import org.featx.spec.model.BaseUnified;
 
 /**
- * @author Excepts
- * @since 2020/4/11 23:11
+ *
  */
 @Data
 @EqualsAndHashCode(callSuper = true)

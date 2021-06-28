@@ -17,8 +17,7 @@ import org.springframework.http.converter.HttpMessageConverter;
 import java.util.List;
 
 /**
- * @author Excepts
- * @since 2019-10-28 12:50
+ *
  */
 //@Configuration
 public class JsonConverterConfiguration {

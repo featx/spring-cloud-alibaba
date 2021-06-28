@@ -15,8 +15,7 @@ import javax.sql.DataSource;
 //import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 /**
- * @author Excepts
- * @since 2020/4/6 0:10
+ *
  */
 
 @Configuration

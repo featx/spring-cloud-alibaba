@@ -9,8 +9,7 @@ import org.featx.spec.model.BaseUnified;
 
 
 /**
- * @author Excepts
- * @since 2020/4/11 22:33
+ *
  */
 @Data
 @EqualsAndHashCode(callSuper = true)

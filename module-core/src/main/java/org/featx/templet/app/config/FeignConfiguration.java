@@ -10,8 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.http.converter.HttpMessageConverter;
 
 /**
- * @author Excepts
- * @since 2019-10-28 12:39
+ *
  */
 //@Configuration
 public class FeignConfiguration {

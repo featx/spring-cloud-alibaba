@@ -5,10 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- *  demo
- *  sentinel
- * @author wangguanglin
- * @since 2019-10-25 20:06
+ *
  **/
 @Configuration
 public class SentinelConfig {

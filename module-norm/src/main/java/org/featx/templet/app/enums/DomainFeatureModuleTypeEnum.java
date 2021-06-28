@@ -3,8 +3,7 @@ package org.featx.templet.app.enums;
 import java.util.Arrays;
 
 /**
- * @author Excepts
- * @since 2020/4/12 15:21
+ *
  */
 public enum DomainFeatureModuleTypeEnum {
     /**

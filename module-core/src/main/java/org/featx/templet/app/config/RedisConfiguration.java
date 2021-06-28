@@ -11,10 +11,7 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
- * demo
- * RedisConfiguration
- * @author Thomas Wang
- * @since 2019-10-09 17:38
+ *
  **/
 //@Configuration
 public class RedisConfiguration {

@@ -1,11 +1,8 @@
 package org.featx.templet.app.config;
 
 /**
- * demo
- * config
- * @author wangguanglin
- * @since 2019-10-25 20:27
- **/
+ *
+ */
 //public class NacosDataSourceProperties extends AbstractDataSourceProperties {
 //    public NacosDataSourceProperties(String factoryBeanName) {
 //        super(factoryBeanName);
