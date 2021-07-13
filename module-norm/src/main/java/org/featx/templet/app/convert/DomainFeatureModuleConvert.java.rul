@@ -1,33 +1,19 @@
-package org.featx.templet.app.service;
+package org.featx.templet.app.convert;
 
-import org.featx.spec.model.QuerySection;
 import org.featx.templet.app.criteria.DomainFeatureModuleCriteria;
 import org.featx.templet.app.entity.DomainFeatureModuleEntity;
+import org.featx.templet.app.model.DomainFeatureModuleSave;
 import org.featx.templet.app.model.DomainFeatureModuleInfo;
 import org.featx.templet.app.model.DomainFeatureModuleItem;
 import org.featx.templet.app.model.DomainFeatureModulePageQuery;
-import org.featx.templet.app.model.DomainFeatureModuleSave;
 
-import java.util.List;
+public class DomainFeatureModuleConvert {
 
-/**
- *
- */
-public interface DomainFeatureModuleService {
+    private DomainFeatureModuleConvert() {
+        
+    }
 
-    DomainFeatureModuleItem save(DomainFeatureModuleSave domainFeatureModuleSave);
-
-    DomainFeatureModuleItem update(DomainFeatureModuleSave domainFeatureModuleSave);
-
-    void delete(String code);
-
-    DomainFeatureModuleInfo findOne(String code);
-
-    List<DomainFeatureModuleItem> listByCodes(List<String> codes);
-
-    QuerySection<DomainFeatureModuleItem> page(DomainFeatureModulePageQuery pageQuery);
-
-    default DomainFeatureModuleEntity toEntity(DomainFeatureModuleSave domainFeatureModuleSave) {
+    public static DomainFeatureModuleEntity toEntity(DomainFeatureModuleSave domainFeatureModuleSave) {
         DomainFeatureModuleEntity domainFeatureModuleEntity = new DomainFeatureModuleEntity();
         domainFeatureModuleEntity.setCode(domainFeatureModuleSave.getCode());
         domainFeatureModuleEntity.setName(domainFeatureModuleSave.getName());
@@ -36,7 +22,7 @@ public interface DomainFeatureModuleService {
         return domainFeatureModuleEntity;
     }
 
-    default DomainFeatureModuleInfo toInfo(DomainFeatureModuleEntity entity) {
+    public static DomainFeatureModuleInfo toInfo(DomainFeatureModuleEntity entity) {
         DomainFeatureModuleInfo info = new DomainFeatureModuleInfo();
         info.setCode(entity.getCode());
         info.setName(entity.getName());
@@ -45,7 +31,7 @@ public interface DomainFeatureModuleService {
         return info;
     }
 
-    default DomainFeatureModuleItem toItem(DomainFeatureModuleEntity entity) {
+    public static DomainFeatureModuleItem toItem(DomainFeatureModuleEntity entity) {
         DomainFeatureModuleItem item = new DomainFeatureModuleItem();
         item.setCode(entity.getCode());
         item.setName(entity.getName());
@@ -54,7 +40,7 @@ public interface DomainFeatureModuleService {
         return item;
     }
 
-    default DomainFeatureModuleCriteria toCriteria(DomainFeatureModulePageQuery pageQuery) {
+    public static DomainFeatureModuleCriteria toCriteria(DomainFeatureModulePageQuery pageQuery) {
         DomainFeatureModuleCriteria criteria = new DomainFeatureModuleCriteria();
 //        criteria.setCode(pageQuery.getCode());
         return criteria;
